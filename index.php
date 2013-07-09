@@ -1,4 +1,19 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
+// Remove generator meta tag
+$this->setGenerator(null);
+// Remove most of the Javascript from the head
+unset($this->_scripts[JURI::root(true).'/media/system/js/mootools-core.js']);
+unset($this->_scripts[JURI::root(true).'/media/system/js/mootools-more.js']);
+unset($this->_scripts[JURI::root(true).'/media/system/js/core.js']);
+unset($this->_scripts[JURI::root(true).'/media/system/js/caption.js']);
+if (isset($this->_script['text/javascript']))
+{
+    $this->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $this->_script['text/javascript']);
+    if (empty($this->_script['text/javascript']))
+        unset($this->_script['text/javascript']);
+}
+
+
 
 ?>
 <!DOCTYPE html >
@@ -6,8 +21,6 @@
    xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" >
 <head>
 <jdoc:include type="head" />
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/general.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template?>/css/style.css" type="text/css" />
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <!--[if lt IE 9]>
