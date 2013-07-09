@@ -22,7 +22,6 @@
                 <filename>component.php</filename>
                 <filename>templateDetails.xml</filename>
                 <filename>index.html</filename>
-                <filename>changelog.md</filename>
         </files>
         <positions>
 		<position>header</position>
